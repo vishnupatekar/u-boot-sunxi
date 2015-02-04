@@ -3264,7 +3264,11 @@ int mALLOPt(param_number, value) int param_number; int value;
 int initf_malloc(void)
 {
 #ifdef CONFIG_SYS_MALLOC_F_LEN
+#if defined(CONFIG_SYS_MALLOC_F_BASE)
+	gd->malloc_base = CONFIG_SYS_MALLOC_F_BASE;
+#else
 	assert(gd->malloc_base);	/* Set up by crt0.S */
+#endif
 	gd->malloc_limit = CONFIG_SYS_MALLOC_F_LEN;
 	gd->malloc_ptr = 0;
 #endif

@@ -156,6 +156,9 @@ int spl_init(void)
 #if defined(CONFIG_SYS_MALLOC_F_LEN)
 	gd->malloc_limit = CONFIG_SYS_MALLOC_F_LEN;
 	gd->malloc_ptr = 0;
+#if defined(CONFIG_SYS_MALLOC_F_BASE)
+	gd->malloc_base = CONFIG_SYS_MALLOC_F_BASE;
+#endif
 #endif
 	if (CONFIG_IS_ENABLED(OF_CONTROL)) {
 		ret = fdtdec_setup();
