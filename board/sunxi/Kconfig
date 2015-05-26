@@ -562,4 +562,11 @@ config GMAC_TX_DELAY
 	---help---
 	Set the GMAC Transmit Clock Delay Chain value.
 
+config SUNXI_NAND_UBI_START
+	hex "Start address of the main UBI partition in nand"
+	default 0x400000
+	---help---
+	Set the start address of the main UBI partition in nand, this is
+	used for the mtdparts environment variable in the default env.
+
 endif

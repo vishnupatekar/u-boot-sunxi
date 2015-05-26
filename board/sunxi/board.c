@@ -109,7 +109,7 @@ int dram_init(void)
 	return 0;
 }
 
-#if defined(CONFIG_NAND_SUNXI) && defined(CONFIG_SPL_BUILD)
+#ifdef CONFIG_NAND_SUNXI
 static void nand_pinmux_setup(void)
 {
 	unsigned int pin;
@@ -150,7 +150,7 @@ void board_nand_init(void)
 	sunxi_nand_init();
 #endif
 }
-#endif
+#endif /* ifdef CONFIG_NAND_SUNXI */
 
 #ifdef CONFIG_GENERIC_MMC
 static void mmc_pinmux_setup(int sdc)
