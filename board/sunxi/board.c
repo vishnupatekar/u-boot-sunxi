@@ -434,6 +434,14 @@ void sunxi_board_init(void)
 	int power_failed = 0;
 	unsigned long ramsize;
 
+#if defined CONFIG_AXP818_POWER
+	power_failed = axp_init();
+	power_failed |= axp_set_dcdc1(CONFIG_AXP_DCDC1_VOLT);
+	power_failed |= axp_set_dcdc2(CONFIG_AXP_DCDC2_VOLT);
+	power_failed |= axp_set_dcdc3(CONFIG_AXP_DCDC3_VOLT);
+	power_failed |= axp_set_dcdc5(CONFIG_AXP_DCDC5_VOLT);
+#endif
+
 #if defined CONFIG_AXP152_POWER || defined CONFIG_AXP209_POWER || defined CONFIG_AXP221_POWER
 	power_failed = axp_init();
 

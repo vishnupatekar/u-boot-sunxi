@@ -26,6 +26,9 @@
 #define AXP223_DEVICE_ADDR		0x3a3
 #define AXP223_RUNTIME_ADDR		0x2d
 
+#define AXP818_DEVICE_ADDR		0x3a3
+#define AXP818_RUNTIME_ADDR		0x2d
+
 int pmic_bus_init(void)
 {
 	/* This cannot be 0 because it is used in SPL before BSS is ready */
@@ -49,6 +52,14 @@ int pmic_bus_init(void)
 # endif
 	if (ret)
 		return ret;
+#elif defined CONFIG_AXP818_POWER
+	ret = rsb_init();
+	if (ret)
+		return ret;
+
+	ret = rsb_set_device_address(AXP818_DEVICE_ADDR, AXP818_RUNTIME_ADDR);
+	if (ret)
+		return ret;
 #endif
 
 	needs_init = 0;
@@ -67,6 +78,8 @@ int pmic_bus_read(u8 reg, u8 *data)
 # else
 	return rsb_read(AXP223_RUNTIME_ADDR, reg, data);
 # endif
+#elif defined CONFIG_AXP818_POWER
+	return rsb_read(AXP818_RUNTIME_ADDR, reg, data);
 #endif
 }
 
@@ -82,6 +95,8 @@ int pmic_bus_write(u8 reg, u8 data)
 # else
 	return rsb_write(AXP223_RUNTIME_ADDR, reg, data);
 # endif
+#elif CONFIG_AXP818_POWER
+	return rsb_write(AXP818_RUNTIME_ADDR, reg, data);
 #endif
 }
 
