@@ -157,6 +157,8 @@ dtb-$(CONFIG_MACH_SUN8I_A33) += \
 	sun8i-a33-ga10h-v1.1.dtb \
 	sun8i-a33-q8-tablet.dtb \
 	sun8i-a33-sinlinx-sina33.dtb
+dtb-$(CONFIG_MACH_SUN8I_A83T) += \
+	sun8i-a83t-allwinner-h8homlet-v2.dtb
 dtb-$(CONFIG_MACH_SUN9I) += \
 	sun9i-a80-optimus.dtb \
 	sun9i-a80-cubieboard4.dtb
